@@ -4,6 +4,16 @@
 
 enum {INF = 3};
 
+bool IsSolution(double a, double b, double c, double x)
+{
+    assert(isfinite(a));
+    assert(isfinite(b));
+    assert(isfinite(c));
+    assert(isfinite(x));
+
+    return IsZero(a*x*x + b*x + c);
+}
+
 bool OneTest(double a, double b, double c, int ExpnRoots)
 {
     double x1 = 0, x2 = 0;
@@ -30,7 +40,6 @@ bool OneTest(double a, double b, double c, int ExpnRoots)
     printf("Тест пройден\n");
     return true;
 }
- // fopen("test.txt", "")
 
 void Tests(void)
 {
@@ -49,9 +58,27 @@ void Tests(void)
     printf("Не прошли %d тестов\n", NotOkTests);
 }
 
-bool IsSolution(double a, double b, double c, double x)
+void TestsFromFile(void)
 {
-    return IsZero(a*x*x + b*x + c);
+    FILE * DataFile = fopen("DataFile.txt", "r");
+
+    if (DataFile == NULL)
+    {
+        printf("Ошибка\n");
+        return;
+    }
+    int NotOkTests = 0;
+    double a = 0, b = 0, c = 0;
+    int ExpRoots = 0;
+
+    while (fscanf(DataFile, "%lf %lf %lf %d\n", &a, &b, &c, &ExpRoots) != EOF)
+    {
+        if (!(OneTest (a, b, c, ExpRoots)))
+            NotOkTests += 1;
+    }
+
+    printf("Не прошли %d тестов\n", NotOkTests);
+    return;
 }
 
 

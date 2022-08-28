@@ -42,6 +42,10 @@ int SquareSolver(double a, double b, double c, double* x1, double* x2)
 
 int LinealSolver(double b, double c, double* x1)
 {
+    assert(isfinite(b));
+    assert(isfinite(c));
+    assert(x1 != NULL);
+
     if (IsZero(b))
         return (IsZero(c)) ? INF : 0;
     else
@@ -54,6 +58,9 @@ int LinealSolver(double b, double c, double* x1)
 
 void PrintSolution(int nRoots, double x1, double x2)
 {
+    assert(isfinite(x1));
+    assert(isfinite(x2));
+
     switch (nRoots)
     {
         case 0:

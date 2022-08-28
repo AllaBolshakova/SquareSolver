@@ -6,6 +6,8 @@ int main(void)
 {
     Tests();
 
+    TestsFromFile();
+
     double a = 0, b = 0, c = 0;
     printf("Введите коэффициенты квадратного уравнения: ");
     int n = scanf("%lf %lf %lf", &a, &b, &c);
@@ -14,7 +16,7 @@ int main(void)
     {
         while (getchar() != '\n');
         printf("Неверный формат ввода. Введите коэффициенты заново: ");
-        n=scanf("%lf %lf %lf", &a, &b, &c);
+        n = scanf("%lf %lf %lf", &a, &b, &c);
     }
 
     double x1 = 0, x2 = 0;
